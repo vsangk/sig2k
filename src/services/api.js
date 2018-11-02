@@ -3,7 +3,7 @@ import axios from 'axios';
 const teamId = '5bd8d111383bff0004154311';
 
 export const getUnrankedPlayers = (size = 100) => {
-  axios
+  return axios
     .get(
       `http://sigpong.herokuapp.com/api/users/unranked?team_id=${teamId}&size=${size}`
     )
@@ -11,7 +11,7 @@ export const getUnrankedPlayers = (size = 100) => {
 };
 
 export const getRankedPlayers = (size = 100) => {
-  axios
+  return axios
     .get(
       `http://sigpong.herokuapp.com/api/users/ranked?team_id=${teamId}&size=${size}`
     )
@@ -19,7 +19,7 @@ export const getRankedPlayers = (size = 100) => {
 };
 
 export const getRecentMatches = (size = 10) => {
-  axios
+  return axios
     .get(
       `http://sigpong.herokuapp.com/api/matches?team_id=${teamId}&size=${size}`
     )
@@ -27,7 +27,7 @@ export const getRecentMatches = (size = 10) => {
 };
 
 export const getRecentMatchesByUser = (userName, size = 10) => {
-  axios
+  return axios
     .get(
       `http://sigpong.herokuapp.com/api/matches/user?team_id=${teamId}&user_name=${userName}&size=${size}`
     )
@@ -35,7 +35,7 @@ export const getRecentMatchesByUser = (userName, size = 10) => {
 };
 
 export const getUser = userName => {
-  axios
+  return axios
     .get(
       `http://sigpong.herokuapp.com/api/users/user?team_id=${teamId}&user_name=${userName}`
     )

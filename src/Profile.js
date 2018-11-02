@@ -14,11 +14,12 @@ class Profile extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <Grid>
                 <Row className="profile">
                     <Col md={6} mdPush={6}>
-                        <div class="profile-header">
+                        <div className="profile-header">
                             <Row>
                                 <Col md={4} mdPush={8}>
                                     <img src={this.props.avatar} />
@@ -30,7 +31,7 @@ class Profile extends Component {
                                 </Col>
                             </Row>
                         </div>
-                        <div class="profile-info">
+                        <div className="profile-info">
                             <Row className="record-section">
                                 <Col className="record-title" sm={3}>Record:</Col>
                                 <Col className="wins" sm={3}>W{this.props.wins}</Col>
