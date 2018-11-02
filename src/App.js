@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as api from './services/api';
 
 class App extends Component {
+  componentDidMount() {
+    api.getUnrankedPlayers();
+    api.getRankedPlayers();
+    api.getRecentMatches();
+    api.getUser('emilio');
+    api.getRecentMatchesByUser('emilio');
+  }
+
   render() {
     return (
       <div className="App">
