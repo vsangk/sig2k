@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Col, Grid, Row} from "react-bootstrap";
 import RecentMatches from "./RecentMatches";
+import './Profile.css';
 
 const BASE_ELO = 1200;
 
