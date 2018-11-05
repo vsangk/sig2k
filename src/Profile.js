@@ -52,8 +52,8 @@ class Profile extends Component {
                             </Row>
                             <Row className="elo-section">
                                 <Col className="elo-history-title" sm={4}>Elo History:</Col>
-                                <Col className="max-elo" sm={4}>Max: {Math.max(...this.props.userData.elo_history) + BASE_ELO}</Col>
-                                <Col className="min-elo" sm={4}>Min: {Math.min(...this.props.userData.elo_history) + BASE_ELO}</Col>
+                                <Col className="max-elo" sm={4}>Max: { Math.max.apply(Math, this.props.userData.elo_history) + BASE_ELO}</Col>
+                                <Col className="min-elo" sm={4}>Min: { Math.min.apply(Math, this.props.userData.elo_history) + BASE_ELO}</Col>
                             </Row>
                         </Row>
                     </Col>
