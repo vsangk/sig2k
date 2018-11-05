@@ -21,7 +21,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    return <Profile {...this.state.userData} {...this.state.userMatches} />;
+    return <Profile {...this.state} />;
   }
 }
 
