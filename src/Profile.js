@@ -15,6 +15,7 @@ class Profile extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <Grid>
                 <Row className="profile">
@@ -47,14 +48,14 @@ class Profile extends Component {
                                 <Col className="current-streak-title" sm={8}>Win Percentage:</Col>
                                 <Col className="current-streak" sm={4}>{this.currentStreakText(this.props.userData.current_streak, this.props.userData.current_streak_is_win)}</Col>
                             </Row>
-                            <Row className="streak-section">
-                                <Col className="streak-title" sm={4}>Elo History:</Col>
-                                <Col className="win-streak" sm={4}>Max: {Math.max(this.props.userData.elo_history) + BASE_ELO}</Col>
-                                <Col className="lose-streak" sm={4}>Min: {Math.min(this.props.userData.elo_history) + BASE_ELO}</Col>
+                            <Row className="elo-section">
+                                <Col className="elo-history-title" sm={4}>Elo History:</Col>
+                                <Col className="max-elo" sm={4}>Max: {Math.max(this.props.userData.elo_history) + BASE_ELO}</Col>
+                                <Col className="min-elo" sm={4}>Min: {Math.min(this.props.userData.elo_history) + BASE_ELO}</Col>
                             </Row>
                             <Row className="favorite-team-section">
-                                <Col className="favorite-team-title" sm={8}>Record:</Col>
-                                <Col className="favorite-team" sm={4}>L{this.props.userData.favorite_team}</Col>
+                                <Col className="favorite-team-title" sm={8}>Favorite Team:</Col>
+                                <Col className="favorite-team" sm={4}>{this.props.userData.favorite_team}</Col>
                             </Row>
                         </Row>
                     </Col>
