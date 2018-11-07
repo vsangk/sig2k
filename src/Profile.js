@@ -18,7 +18,7 @@ class Profile extends Component {
         return (
             <Grid>
                 <Row className="profile">
-                    <Col md={12}>
+                    <Col md={6}>
                         <Row className="profile-header">
                             <Col md={4}>
                                 <img className="avatar" src={this.props.userData.avatar} />
