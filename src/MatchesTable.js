@@ -41,7 +41,7 @@ class MatchesTable extends Component {
         },
       },
       { Header: 'Teams', id: 'teams', accessor: d => `${d.winner_team} vs. ${d.loser_team}` },
-      { Header: 'Scores', id: 'scores', accessor: d => d.scores[0].join(':') },
+      { Header: 'Scores', id: 'scores', accessor: d => d.scores[0].reverse().join(':') },
       {
         Header: 'ELO Gain/Loss',
         id: 'eloDiff',
