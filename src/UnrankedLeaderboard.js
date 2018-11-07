@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { getRankedPlayers } from './services/api';
+import { getUnrankedPlayers } from './services/api';
 import PlayersTable from './PlayersTable';
 
-class Leaderboard extends Component {
+class UnrankedLeaderboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +13,7 @@ class Leaderboard extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    getRankedPlayers().then(players =>
+    getUnrankedPlayers().then(players =>
       this.setState({ players, loading: false })
     );
   }
@@ -21,7 +21,7 @@ class Leaderboard extends Component {
   render() {
     return (
       <>
-        <h2>Leaderboard</h2>
+        <h2>{'Unranked (< 8 Games Played)'}</h2>
         <PlayersTable
           playersData={this.state.players}
           loading={this.state.loading}
@@ -31,4 +31,4 @@ class Leaderboard extends Component {
   }
 }
 
-export default Leaderboard;
+export default UnrankedLeaderboard;

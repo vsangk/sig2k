@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Col, Grid, Row} from "react-bootstrap";
-import RecentMatches from "./RecentMatches";
+import MatchesTable from "./MatchesTable";
 import './Profile.css';
 
 const BASE_ELO = 1200;
@@ -56,7 +56,7 @@ class Profile extends Component {
                         </Row>
                     </Col>
                     <Col md={6}>
-                        <RecentMatches {...this.props.userMatches}></RecentMatches>
+                        <MatchesTable matchesData={this.props.userMatches} loading={this.props.loading} />
                     </Col>
                 </Row>
             </Grid>

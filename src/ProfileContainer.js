@@ -7,15 +7,17 @@ class ProfileContainer extends Component {
     super(props);
     this.state = {
       userData: {},
-      userMatches: {},
+      userMatches: [],
+      loading: false,
     };
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     const user = this.props.match.params.user;
     Promise.all([getUser(user), getRecentMatchesByUser(user)]).then(
       ([userData, userMatches]) => {
-        this.setState({ userData, userMatches });
+        this.setState({ userData, userMatches, loading: false });
       }
     );
   }
