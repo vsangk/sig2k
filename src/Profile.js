@@ -30,6 +30,7 @@ class Profile extends Component {
                                     <Col md={8}>
                                         <Row className="tag-line">
                                             <h1>{this.props.userData.user_name}</h1>
+                                            <h2>Rank: {this.props.userData.wins + this.props.userData.wins >= 7 ? this.props.userData.rank : 'Unranked'}</h2>
                                             <h2>{BASE_ELO + this.props.userData.elo} ELO (Max: { Math.max.apply(Math, this.props.userData.elo_history) + BASE_ELO}, Min: { Math.min.apply(Math, this.props.userData.elo_history) + BASE_ELO})</h2>
                                             <h4>Record: {this.props.userData.wins}-{this.props.userData.losses} ({this.calculateWinRate(this.props.userData.wins, this.props.userData.losses)}%)</h4>
                                             <h4>Current Streak: {this.currentStreakText(this.props.userData.current_streak, this.props.userData.current_streak_is_win)} (Longest: W{this.props.userData.winning_streak}/L{this.props.userData.losing_streak})</h4>
