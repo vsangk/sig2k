@@ -16,11 +16,11 @@ class PlayersTable extends Component {
 
   componentDidMount() {
     const columns = [
-      { Header: 'Rank', accessor: 'rank' },
+      { Header: 'Rank', Cell: row => row.index + 1 },
       {
         Header: 'Name',
         accessor: 'user_name',
-        Cell: props => <Link to={`/users/${props.value}`}>{props.value}</Link>,
+        Cell: row => <Link to={`/users/${row.value}`}>{row.value}</Link>,
       },
       { Header: 'ELO', id: 'elo', accessor: d => d.elo + 1200 },
       { Header: 'Wins', accessor: 'wins' },

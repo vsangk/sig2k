@@ -18,3 +18,7 @@ img.avatar {
     margin-left: -150px;
     margin-top: -150px;
 }
+
+.not-found img {
+    width: 100%;
+}

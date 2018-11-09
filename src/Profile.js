@@ -20,7 +20,8 @@ class Profile extends Component {
                 {
                     this.props.error === true
                     ? (
-                        <div className="center">
+                        <div className="center not-found">
+                            <img src="https://sports-images.vice.com/images/2017/01/25/when-nick-young-the-basketball-player-met-nick-young-the-meme-body-image-1485378510.jpg" alt=""/>
                             <h1>Error: User not found</h1>
                             <p>Please use a valid user name or ask that person to register on Slack with "2k register" then try again.</p>
                         </div>
