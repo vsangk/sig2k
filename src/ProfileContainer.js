@@ -9,6 +9,7 @@ class ProfileContainer extends Component {
       userData: {},
       userMatches: [],
       loading: false,
+      error: false,
     };
   }
 
@@ -17,13 +18,31 @@ class ProfileContainer extends Component {
     const user = this.props.match.params.user;
     Promise.all([getUser(user), getRecentMatchesByUser(user)]).then(
       ([userData, userMatches]) => {
-        this.setState({ userData, userMatches, loading: false });
+        this.setState({ userData, userMatches, loading: false, error: false });
       }
-    );
+    ).catch((error) => {
+        this.setState({loading: false, error: true});
+    });
+  }
+
+  componentWillReceiveProps(newProps) {
+      this.setState({ loading: true });
+      const user = newProps.match.params.user;
+      Promise.all([getUser(user), getRecentMatchesByUser(user)]).then(
+          ([userData, userMatches]) => {
+              this.setState({ userData, userMatches, loading: false, error: false });
+          }
+      ).catch((error) => {
+          this.setState({loading: false, error: true});
+      });
   }
 
   render() {
-    return <Profile {...this.state} />;
+    return(
+        {
+            ...this.state.loading ? <div className="center">Loading...</div> : (<Profile {...this.state} />)
+        }
+    );
   }
 }
 

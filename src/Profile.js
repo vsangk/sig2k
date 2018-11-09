@@ -18,9 +18,13 @@ class Profile extends Component {
         return (
             <Grid>
                 {
-                    Object.keys(this.props.userData).length === 0
-                    ? <div className="center">Loading...</div>
-                    : (
+                    this.props.error === true
+                    ? (
+                        <div className="center">
+                            <h1>Error: User not found</h1>
+                            <p>Please use a valid user name or ask that person to register on Slack with "2k register" then try again.</p>
+                        </div>
+                    ) : (
                         <Row className="profile">
                             <Col md={12}>
                                 <Row className="profile-header">
