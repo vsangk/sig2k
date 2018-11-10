@@ -54,6 +54,7 @@ class MatchesTable extends Component {
   render() {
     return (
       <ReactTable
+        className="table"
         data={this.props.matchesData}
         columns={this.state.columns}
         defaultPageSize={10}

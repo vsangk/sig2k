@@ -23,6 +23,7 @@ class Leaderboard extends Component {
       <>
         <h2>Leaderboard</h2>
         <PlayersTable
+          table="leaderboard"
           playersData={this.state.players}
           loading={this.state.loading}
         />

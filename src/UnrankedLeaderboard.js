@@ -23,6 +23,7 @@ class UnrankedLeaderboard extends Component {
       <>
         <h2>{'Unranked (< 8 Games Played)'}</h2>
         <PlayersTable
+          table="unranked"
           playersData={this.state.players}
           loading={this.state.loading}
         />

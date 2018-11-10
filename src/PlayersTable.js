@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
+import trophyNba from './trophy-nba.png';
+import trophyGLeague from './trophy-gleague.png';
 
 const currentStreakText = (currentStreak, isCurrentStreakWin) => {
   return isCurrentStreakWin ? 'W' + currentStreak : 'L' + currentStreak;
@@ -16,7 +18,35 @@ class PlayersTable extends Component {
 
   componentDidMount() {
     const columns = [
-      { Header: 'Rank', Cell: row => row.index + 1 },
+      {
+        Header: 'Rank',
+        Cell: row => (
+          <div
+            style={{
+              width: '100%',
+              height: row.index === 0 ? '60px' : '100%',
+              marginRight: row.index === 0 ? '-10px' : '',
+              textAlign: 'center',
+            }}
+          >
+            {row.index === 0 ? (
+              <span>
+                <img
+                  src={
+                    this.props.table === 'leaderboard'
+                      ? trophyNba
+                      : trophyGLeague
+                  }
+                  style={{ height: '60px' }}
+                  alt=""
+                />
+              </span>
+            ) : (
+              <span>{row.index + 1}</span>
+            )}
+          </div>
+        ),
+      },
       {
         Header: 'Name',
         accessor: 'user_name',
@@ -39,12 +69,20 @@ class PlayersTable extends Component {
   render() {
     return (
       <ReactTable
+        className="table"
         data={this.props.playersData}
         columns={this.state.columns}
         defaultPageSize={10}
         loading={this.props.loading}
         loadingText="Loading..."
         noDataText="No players found"
+        getTrProps={(state, rowInfo, column) => {
+          return {
+            style: {
+              alignItems: 'center',
+            },
+          };
+        }}
       />
     );
   }
