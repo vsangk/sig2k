@@ -4,6 +4,7 @@ import ProfileContainer from './ProfileContainer';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import 'react-table/react-table.css';
 import {Button, Form, FormControl, FormGroup, Navbar} from "react-bootstrap";
+import ReportContainer from "./ReportContainer";
 
 class App extends Component {
 
@@ -36,6 +37,7 @@ class App extends Component {
             </Navbar>
           <Route path="/" exact component={Home} />
           <Route path="/users/:user" component={ProfileContainer} />
+          <Route path="/reports" component={ReportContainer} />
         </div>
       </Router>
     );
