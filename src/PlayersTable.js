@@ -61,7 +61,7 @@ class PlayersTable extends Component {
         accessor: d =>
           currentStreakText(d.current_streak, d.current_streak_is_win),
       },
-      { Header: 'Favorite Team', accessor: 'favorite_team' },
+      { Header: 'Most Played Team', accessor: 'most_played_team' },
     ];
     this.setState({ columns });
   }
