@@ -6,6 +6,7 @@ import 'react-table/react-table.css';
 import {Button, Form, FormControl, FormGroup, Nav, Navbar, NavItem} from "react-bootstrap";
 import ReportContainer from "./ReportContainer";
 import MatchesContainer from "./MatchesContainer";
+import PlayersContainer from "./PlayersContainer";
 
 class App extends Component {
 
@@ -34,6 +35,9 @@ class App extends Component {
                     <NavItem eventKey={2} href="#/matches">
                         Matches
                     </NavItem>
+                    <NavItem eventKey={3} href="#/players">
+                        Players
+                    </NavItem>
                 </Nav>
                 <Navbar.Form pullRight>
                     <Form onSubmit={this.handleSubmit}>
@@ -48,6 +52,8 @@ class App extends Component {
           <Route path="/users/:user" component={ProfileContainer} />
           <Route path="/reports" component={ReportContainer} />
           <Route path="/matches" component={MatchesContainer} />
+          <Route path="/players" component={PlayersContainer} />
+
         </div>
       </Router>
     );

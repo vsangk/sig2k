@@ -43,10 +43,10 @@ export const getUser = userName => {
     .then(res => res.data);
 };
 
-export const getUsers = ()  => {
+export const getUsers = (size = 100)  => {
     return axios
         .get(
-            `https://sigpong.herokuapp.com/api/users?team_id=${teamId}`
+            `https://sigpong.herokuapp.com/api/users?team_id=${teamId}&size=${size}`
         )
         .then(res => res.data._embedded.users);
 };
