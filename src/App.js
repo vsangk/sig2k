@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import 'react-table/react-table.css';
 import {Button, Form, FormControl, FormGroup, Nav, Navbar, NavItem} from "react-bootstrap";
 import ReportContainer from "./ReportContainer";
+import MatchesContainer from "./MatchesContainer";
 
 class App extends Component {
 
@@ -30,6 +31,9 @@ class App extends Component {
                     <NavItem eventKey={1} href="#/reports">
                         Reports
                     </NavItem>
+                    <NavItem eventKey={2} href="#/matches">
+                        Matches
+                    </NavItem>
                 </Nav>
                 <Navbar.Form pullRight>
                     <Form onSubmit={this.handleSubmit}>
@@ -43,6 +47,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/users/:user" component={ProfileContainer} />
           <Route path="/reports" component={ReportContainer} />
+          <Route path="/matches" component={MatchesContainer} />
         </div>
       </Router>
     );

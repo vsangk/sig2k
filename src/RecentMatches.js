@@ -12,8 +12,9 @@ class RecentMatches extends Component {
   }
 
   componentDidMount() {
+    const numberOfMatches = this.props.numberOfMatches || 10;
     this.setState({ loading: true });
-    getRecentMatches().then(matches =>
+    getRecentMatches(numberOfMatches).then(matches =>
       this.setState({ matches, loading: false })
     );
   }
