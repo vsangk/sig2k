@@ -3,7 +3,7 @@ import Home from './Home';
 import ProfileContainer from './ProfileContainer';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import 'react-table/react-table.css';
-import {Button, Form, FormControl, FormGroup, Navbar} from "react-bootstrap";
+import {Button, Form, FormControl, FormGroup, Nav, Navbar, NavItem} from "react-bootstrap";
 import ReportContainer from "./ReportContainer";
 
 class App extends Component {
@@ -26,6 +26,11 @@ class App extends Component {
                         <a href="#/">Sig2k</a>
                     </Navbar.Brand>
                 </Navbar.Header>
+                <Nav>
+                    <NavItem eventKey={1} href="#/reports">
+                        Reports
+                    </NavItem>
+                </Nav>
                 <Navbar.Form pullRight>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>

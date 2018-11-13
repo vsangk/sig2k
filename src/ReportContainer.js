@@ -31,11 +31,11 @@ class ReportContainer extends Component {
                 ...this.state.loading ?
                     <div className="center">Loading...</div>
                     : (
-                        <>
+                        <div className="reports-container">
                             <CreateReport users={this.state.users} loading={this.state.loading}/>
                             <h1>Outstanding Reports</h1>
                             <ReportsTable reportsData={this.state.reports} loading={this.state.loading} />
-                        </>
+                        </div>
                     )
             }
         );
