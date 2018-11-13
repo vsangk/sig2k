@@ -4,6 +4,13 @@ import NBATeams from './NBATeams';
 import {Button, Col, ControlLabel, Form, FormControl, Row} from "react-bootstrap";
 import './Report.css';
 
+const validationErrors = {
+    REPORT_EMPTY: 'Please fill out the report.',
+    PLAYERS_MISSING: 'Please ensure that you have a reporter and opponent',
+    PLAYERS_NOT_UNIQUE: 'Please ensure that you have unique players on each team.',
+    INVALID_SCORES: 'Please check to see that you have entered valid scores.',
+    TEAMS_MISSING: 'Please check to see that you have entered teams played for each team.'
+};
 
 class CreateReport extends Component {
     constructor(props, context) {
@@ -22,6 +29,7 @@ class CreateReport extends Component {
             reporter_team: '',
             opponent_team: '',
             submitting: false,
+            error: validationErrors.REPORT_EMPTY,
         };
     }
 
@@ -40,26 +48,30 @@ class CreateReport extends Component {
 
     validateState() {
         if (this.state.reporter === '' || this.state.opponent1 === '') {
+            this.setState({error: validationErrors.PLAYERS_MISSING});
             console.log('need a reporter and an opponent');
             return false;
         }
 
         const players = [this.state.reporter, this.state.teammate, this.state.opponent1, this.state.opponent2];
         if (this.checkPlayerUniqueness(players) === false) {
+            this.setState({error: validationErrors.PLAYERS_NOT_UNIQUE});
             console.log('players not unique');
             return false;
         }
         if (this.state.score.length < 2 || this.state.score[0] === '' || this.state.score[0] < 0 || this.state.score[1] === '' || this.state.score[1] < 0) {
+            this.setState({error: validationErrors.INVALID_SCORES});
             console.log('invalid scores');
             return false;
         }
 
 
         if (this.state.reporter_team === '' || this.state.opponent_team === ''){
+            this.setState({error: validationErrors.TEAMS_MISSING});
             console.log('need teams');
             return false;
         }
-
+        this.setState({error: null});
         return true;
     }
 
@@ -93,8 +105,6 @@ class CreateReport extends Component {
     }
 
     handleSubmit(e){
-        if (e) e.preventDefault();
-
         if(this.validateState()){
             const report = {
                 reporter_ids: this.combineTeammates(),
@@ -109,6 +119,8 @@ class CreateReport extends Component {
                this.setState({submitting: false});
            });
         } else{
+            if (e) e.preventDefault();
+            alert(this.state.error);
         }
     }
 
