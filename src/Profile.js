@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Col, Grid, Row} from "react-bootstrap";
 import MatchesTable from "./MatchesTable";
 import './Profile.css';
+import dennis from './images/dennis.jpg';
 
 const BASE_ELO = 1200;
 
@@ -30,7 +31,7 @@ class Profile extends Component {
                             <Col md={12}>
                                 <Row className="profile-header">
                                     <Col md={4}>
-                                        <img alt="avatar" className="avatar" src={this.props.userData.avatar} />
+                                        <img alt="avatar" className="avatar" src={this.props.userData.avatar ? this.props.userData.avatar : dennis} />
                                     </Col>
                                     <Col md={8}>
                                         <Row className="tag-line">
