@@ -51,6 +51,14 @@ export const getUsers = (size = 100)  => {
         .then(res => res.data._embedded.users);
 };
 
+export const getUserTeams = (size = 1000)  => {
+    return axios
+        .get(
+            `https://sigpong.herokuapp.com/api/user_teams?team_id=${teamId}&size=${size}`
+        )
+        .then(res => res.data._embedded.user_teams);
+};
+
 export const getOutstandingReports = () => {
     return axios
         .get(

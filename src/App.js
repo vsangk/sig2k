@@ -7,6 +7,7 @@ import {Button, Form, FormControl, FormGroup, Nav, Navbar, NavItem} from "react-
 import ReportContainer from "./ReportContainer";
 import MatchesContainer from "./MatchesContainer";
 import PlayersContainer from "./PlayersContainer";
+import TeamsContainer from "./TeamsContainer";
 
 class App extends Component {
 
@@ -38,6 +39,9 @@ class App extends Component {
                     <NavItem eventKey={3} href="#/players">
                         Players
                     </NavItem>
+                    <NavItem eventKey={4} href="#/teams">
+                        Teams
+                    </NavItem>
                 </Nav>
                 <Navbar.Form pullRight>
                     <Form onSubmit={this.handleSubmit}>
@@ -53,7 +57,7 @@ class App extends Component {
           <Route path="/reports" component={ReportContainer} />
           <Route path="/matches" component={MatchesContainer} />
           <Route path="/players" component={PlayersContainer} />
-
+          <Route path="/teams" component={TeamsContainer} />
         </div>
       </Router>
     );

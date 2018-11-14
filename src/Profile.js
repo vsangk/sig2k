@@ -8,7 +8,7 @@ const BASE_ELO = 1200;
 
 class Profile extends Component {
     calculateWinRate(wins, losses) {
-        return ((wins / (wins + losses))*100).toFixed(2);
+        return parseFloat(((wins / (wins + losses))*100).toFixed(2));
     }
 
     currentStreakText(currentStreak, isCurrentStreakWin) {
