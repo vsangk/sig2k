@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import { Link } from 'react-router-dom';
+import * as images from './images/logos';
 
 class NBATeamsTable extends Component {
     constructor(props) {
@@ -14,9 +14,26 @@ class NBATeamsTable extends Component {
         return parseFloat(((wins / (wins + losses))*100).toFixed(2));
     }
 
+    getTeamImagePath(teamName) {
+        if (teamName === "76ers") {
+            return images.Sixers;
+        }
+        if (teamName === "Trail Blazers") {
+            return images.TrailBlazers;
+        } else {
+            return images[teamName];
+        }
+    }
+
     componentDidMount() {
         const columns = [
-            { Header: 'Team', accessor: 'name' },
+            {
+                Header: "Team",
+                Cell: (row) => {
+                    return <div><img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(row.original.name)}/>  {row.original.name}</div>
+                },
+                id: "status",
+            },
             { Header: 'Played', accessor: 'played' },
             { Header: 'Wins', accessor: 'wins' },
             { Header: 'Losses', accessor: 'losses' },

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
+import * as images from "./images/logos";
 
 class MatchesTable extends Component {
   constructor(props) {
@@ -9,6 +10,17 @@ class MatchesTable extends Component {
       columns: [],
     };
   }
+
+    getTeamImagePath(teamName) {
+        if (teamName === "76ers") {
+            return images.Sixers;
+        }
+        if (teamName === "Trail Blazers") {
+            return images.TrailBlazers;
+        } else {
+            return images[teamName];
+        }
+    }
 
   componentDidMount() {
     const columns = [
@@ -40,7 +52,16 @@ class MatchesTable extends Component {
           ));
         },
       },
-      { Header: 'Teams', id: 'teams', accessor: d => `${d.winner_team} vs. ${d.loser_team}` },
+      {
+          Header: 'Teams',
+          Cell: (row) => {
+              return <div>
+                  {row.original.winner_team} <img alt="team logo" className="team-logo" width={20} src={this.getTeamImagePath(row.original.winner_team)}/>
+                  &ensp;vs.&ensp;
+                  {row.original.loser_team} <img alt="team logo" className="team-logo" width={20} src={this.getTeamImagePath(row.original.loser_team)}/>
+              </div>
+          },
+      },
       { Header: 'Scores', id: 'scores', accessor: d => d.scores[0].reverse().join(':') },
       {
         Header: 'ELO Gain/Loss',

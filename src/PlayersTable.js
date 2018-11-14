@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import trophyNba from './trophy-nba.png';
 import trophyGLeague from './trophy-gleague.png';
+import * as images from "./images/logos";
 
 const currentStreakText = (currentStreak, isCurrentStreakWin) => {
   return isCurrentStreakWin ? 'W' + currentStreak : 'L' + currentStreak;
@@ -14,6 +15,17 @@ class PlayersTable extends Component {
     this.state = {
       columns: [],
     };
+  }
+
+  getTeamImagePath(teamName) {
+      if (teamName === "76ers") {
+          return images.Sixers;
+      }
+      if (teamName === "Trail Blazers") {
+          return images.TrailBlazers;
+      } else {
+          return images[teamName];
+      }
   }
 
   componentDidMount() {
@@ -61,7 +73,14 @@ class PlayersTable extends Component {
         accessor: d =>
           currentStreakText(d.current_streak, d.current_streak_is_win),
       },
-      { Header: 'Most Played Team', accessor: 'most_played_team' },
+        {
+            Header: "Most Played Team",
+            Cell: (row) => {
+                console.log(row);
+                return <div><img alt="team logo" className="team-logo" width={30} height={30} src={this.getTeamImagePath(row.original.most_played_team)}/>  {row.original.most_played_team}</div>
+            },
+            id: "status",
+        },
     ];
     this.setState({ columns });
   }

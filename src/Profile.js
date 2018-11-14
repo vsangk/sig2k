@@ -3,6 +3,7 @@ import {Col, Grid, Row} from "react-bootstrap";
 import MatchesTable from "./MatchesTable";
 import './Profile.css';
 import dennis from './images/dennis.jpg';
+import * as images from "./images/logos";
 
 const BASE_ELO = 1200;
 
@@ -13,6 +14,17 @@ class Profile extends Component {
 
     currentStreakText(currentStreak, isCurrentStreakWin) {
         return isCurrentStreakWin ? "W" + currentStreak : "L" + currentStreak;
+    }
+
+    getTeamImagePath(teamName) {
+        if (teamName === "76ers") {
+            return images.Sixers;
+        }
+        if (teamName === "Trail Blazers") {
+            return images.TrailBlazers;
+        } else {
+            return images[teamName];
+        }
     }
 
     render() {
@@ -40,8 +52,8 @@ class Profile extends Component {
                                             <h2>{BASE_ELO + this.props.userData.elo} ELO (Max: { Math.max.apply(Math, this.props.userData.elo_history) + BASE_ELO}, Min: { Math.min.apply(Math, this.props.userData.elo_history) + BASE_ELO})</h2>
                                             <h4>Record: {this.props.userData.wins}-{this.props.userData.losses} ({this.calculateWinRate(this.props.userData.wins, this.props.userData.losses)}%)</h4>
                                             <h4>Current Streak: {this.currentStreakText(this.props.userData.current_streak, this.props.userData.current_streak_is_win)} (Longest: W{this.props.userData.winning_streak}/L{this.props.userData.losing_streak})</h4>
-                                            <h4>Most Played Team: {this.props.userData.most_played_team}</h4>
-                                            <h4>Favorite Team: {this.props.userData.favorite_team}</h4>
+                                            <h4>Most Played Team: {this.props.userData.most_played_team}<img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(this.props.userData.most_played_team)}/></h4>
+                                            <h4>Favorite Team: {this.props.userData.favorite_team}<img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(this.props.userData.favorite_team)}/></h4>
                                         </Row>
                                     </Col>
                                 </Row>
