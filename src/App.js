@@ -8,6 +8,8 @@ import ReportContainer from "./ReportContainer";
 import MatchesContainer from "./MatchesContainer";
 import PlayersContainer from "./PlayersContainer";
 import TeamsContainer from "./TeamsContainer";
+import twok from "./images/2k.png";
+import "./App.css";
 
 class App extends Component {
 
@@ -26,7 +28,7 @@ class App extends Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#/">Sig2k</a>
+                        <a href="#/">Sig<img className="App-logo" alt="the guru" src={twok} /></a>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
