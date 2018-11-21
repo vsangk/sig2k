@@ -32,13 +32,18 @@ class NBATeamsTable extends Component {
                 Cell: (row) => {
                     return <div><img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(row.original.name)}/>  {row.original.name}</div>
                 },
-                id: "status",
+                id: "team",
             },
             { Header: 'Played', accessor: 'played' },
             { Header: 'Wins', accessor: 'wins' },
             { Header: 'Losses', accessor: 'losses' },
-            { Header: 'Win Rate', id: 'win-rate', accessor: d => `${d.played > 0 ? (this.calculateWinRate(d.wins, d.losses) + "%") : "N/A"}` },
-
+            {
+                Header: "Win Rate",
+                Cell: (row) => {
+                    return <div className={(row.original.wins > row.original.losses ? 'green' : '') + (row.original.wins < row.original.losses ? 'red' : '')}>{row.original.played > 0 ? (this.calculateWinRate(row.original.wins, row.original.losses)+ "%") : "N/A"}</div>
+                },
+                id: "win-rate",
+            },
         ];
         this.setState({ columns });
     }
