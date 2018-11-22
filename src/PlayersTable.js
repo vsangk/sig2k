@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom';
 import trophyNba from './trophy-nba.png';
 import trophyGLeague from './trophy-gleague.png';
 import * as images from "./images/logos";
-
-const currentStreakText = (currentStreak, isCurrentStreakWin) => {
-  return isCurrentStreakWin ? 'W' + currentStreak : 'L' + currentStreak;
-};
+import { currentStreakText, getPageSizeOptions } from './utils/reactTableUtils';
 
 class PlayersTable extends Component {
   constructor(props) {
@@ -77,7 +74,10 @@ class PlayersTable extends Component {
             Header: "Most Played Team",
             Cell: (row) => {
                 console.log(row);
-                return <div><img alt="team logo" className="team-logo" width={30} height={30} src={this.getTeamImagePath(row.original.most_played_team)}/>  {row.original.most_played_team}</div>
+                return <div style={{ textAlign: 'left', fontWeight: 600 }}>
+                        <img alt="team logo" className="team-logo" width={30} height={30} src={this.getTeamImagePath(row.original.most_played_team)}/>
+                        <span style={{paddingLeft: '10px'}}>{row.original.most_played_team}</span>
+                       </div>
             },
             id: "status",
         },
@@ -88,10 +88,12 @@ class PlayersTable extends Component {
   render() {
     return (
       <ReactTable
-        className="table"
+        className="table -highlight"
         data={this.props.playersData}
         columns={this.state.columns}
         defaultPageSize={10}
+        pageSizeOptions={getPageSizeOptions(this.props.playersData)}
+        showPageJump={false}
         loading={this.props.loading}
         loadingText="Loading..."
         noDataText="No players found"
@@ -99,9 +101,20 @@ class PlayersTable extends Component {
           return {
             style: {
               alignItems: 'center',
+              textAlign: 'center',
+              fontSize: '1.3rem',
             },
           };
         }}
+        getTheadThProps={(state, rowInfo, column) => ({
+          style: {
+            backgroundColor: '#fb653f',
+            color: 'white',
+            fontSize: '1.4rem',
+            fontWeight: 600,
+            padding: '1.2rem 1rem',
+          }
+        })}
       />
     );
   }
