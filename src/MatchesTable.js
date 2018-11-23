@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import * as images from "./images/logos";
-import { getPageSizeOptions } from './utils/reactTableUtils';
+import { getPageSizeOptions, reactTableStyles } from './utils/reactTableUtils';
 
 class MatchesTable extends Component {
   constructor(props) {
@@ -86,21 +86,11 @@ class MatchesTable extends Component {
         noDataText="No matches found"
         getTrProps={(state, rowInfo, column) => {
           return {
-            style: {
-              alignItems: 'center',
-              textAlign: 'center',
-              fontSize: '1.3rem',
-            },
+            style: {...reactTableStyles.trProps}
           };
         }}
         getTheadThProps={(state, rowInfo, column) => ({
-          style: {
-            backgroundColor: '#fb653f',
-            color: 'white',
-            fontSize: '1.4rem',
-            fontWeight: 600,
-            padding: '1.2rem 1rem',
-          }
+          style: {...reactTableStyles.thProps}
         })}
       />
     );

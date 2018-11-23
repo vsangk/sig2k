@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import trophyNba from './trophy-nba.png';
 import trophyGLeague from './trophy-gleague.png';
 import * as images from "./images/logos";
-import { currentStreakText, getPageSizeOptions } from './utils/reactTableUtils';
+import { currentStreakText, getPageSizeOptions, reactTableStyles } from './utils/reactTableUtils';
 
 class PlayersTable extends Component {
   constructor(props) {
@@ -99,21 +99,11 @@ class PlayersTable extends Component {
         noDataText="No players found"
         getTrProps={(state, rowInfo, column) => {
           return {
-            style: {
-              alignItems: 'center',
-              textAlign: 'center',
-              fontSize: '1.3rem',
-            },
+            style: {...reactTableStyles.trProps}
           };
         }}
         getTheadThProps={(state, rowInfo, column) => ({
-          style: {
-            backgroundColor: '#fb653f',
-            color: 'white',
-            fontSize: '1.4rem',
-            fontWeight: 600,
-            padding: '1.2rem 1rem',
-          }
+          style: {...reactTableStyles.thProps}
         })}
       />
     );
