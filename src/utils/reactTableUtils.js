@@ -1,6 +1,12 @@
-export const currentStreakText = (currentStreak, isCurrentStreakWin) => {
-    return isCurrentStreakWin ? 'W' + currentStreak : 'L' + currentStreak;
-};
+export const currentStreak = (eloHistory) => {
+    const history = eloHistory.length >= 5 ? eloHistory.slice(eloHistory.length - 5) : eloHistory;
+    let streak = [];
+    for (let i = 0; i < history.length - 1; i++) {
+        if (history[i] < history[i + 1]) streak = [...streak, 'W'];
+        else streak = [...streak, 'L'];
+    }
+    return streak;
+}
 
 export const getPageSizeOptions = (playersData) => {
     if (playersData === undefined || playersData.length === 0) return [];
