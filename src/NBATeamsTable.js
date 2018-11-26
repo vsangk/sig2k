@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import * as images from './images/logos';
+import { getPageSizeOptions, reactTableStyles } from './utils/reactTableUtils';
 
 class NBATeamsTable extends Component {
     constructor(props) {
@@ -30,7 +31,10 @@ class NBATeamsTable extends Component {
             {
                 Header: "Team",
                 Cell: (row) => {
-                    return <div><img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(row.original.name)}/>  {row.original.name}</div>
+                    return <div style={{ textAlign: 'left', fontWeight: 600, marginLeft: '30px' }}>
+                        <img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(row.original.name)}/>
+                        <span style={{paddingLeft: '30px'}}>{row.original.name}</span>
+                    </div>
                 },
                 id: "team",
             },
@@ -54,9 +58,18 @@ class NBATeamsTable extends Component {
                 data={this.props.teamsData}
                 columns={this.state.columns}
                 defaultPageSize={30}
+                pageSizeOptions={getPageSizeOptions(this.props.teamsData)}
                 loading={this.props.loading}
                 loadingText="Loading..."
                 noDataText="No reports found"
+                getTrProps={(state, rowInfo, column) => {
+                  return {
+                    style: {...reactTableStyles.trProps}
+                  };
+                }}
+                getTheadThProps={(state, rowInfo, column) => ({
+                  style: {...reactTableStyles.thProps}
+                })}
             />
         );
     }

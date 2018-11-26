@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Link } from 'react-router-dom';
 import * as images from "./images/logos";
+import { getPageSizeOptions, reactTableStyles } from './utils/reactTableUtils';
 
 class MatchesTable extends Component {
   constructor(props) {
@@ -55,8 +56,8 @@ class MatchesTable extends Component {
       {
           Header: 'Teams',
           Cell: (row) => {
-              return <div>
-                  {row.original.winner_team} <img alt="team logo" className="team-logo" width={20} src={this.getTeamImagePath(row.original.winner_team)}/>
+              return <div style={{ justifyContent: 'center' }}>
+                  <img alt="team logo" className="team-logo" width={20} src={this.getTeamImagePath(row.original.winner_team)}/> {row.original.winner_team}
                   &ensp;vs.&ensp;
                   {row.original.loser_team} <img alt="team logo" className="team-logo" width={20} src={this.getTeamImagePath(row.original.loser_team)}/>
               </div>
@@ -79,9 +80,18 @@ class MatchesTable extends Component {
         data={this.props.matchesData}
         columns={this.state.columns}
         defaultPageSize={10}
+        pageSizeOptions={getPageSizeOptions(this.props.matchesData)}
         loading={this.props.loading}
         loadingText="Loading..."
         noDataText="No matches found"
+        getTrProps={(state, rowInfo, column) => {
+          return {
+            style: {...reactTableStyles.trProps}
+          };
+        }}
+        getTheadThProps={(state, rowInfo, column) => ({
+          style: {...reactTableStyles.thProps}
+        })}
       />
     );
   }

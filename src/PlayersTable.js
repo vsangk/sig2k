@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom';
 import trophyNba from './trophy-nba.png';
 import trophyGLeague from './trophy-gleague.png';
 import * as images from "./images/logos";
-
-const currentStreakText = (currentStreak, isCurrentStreakWin) => {
-  return isCurrentStreakWin ? 'W' + currentStreak : 'L' + currentStreak;
-};
+import { currentStreak, getPageSizeOptions, reactTableStyles } from './utils/reactTableUtils';
 
 class PlayersTable extends Component {
   constructor(props) {
@@ -70,14 +67,40 @@ class PlayersTable extends Component {
       {
         Header: 'Current Streak',
         id: 'currentStreak',
-        accessor: d =>
-          currentStreakText(d.current_streak, d.current_streak_is_win),
+        accessor: d => {
+          const streak = currentStreak(d.elo_history);
+          return <div style={{ textAlign: 'left' }}>
+            <ul style={{
+              listStyleType: 'none',
+              paddingLeft: 0,
+              marginTop: 0,
+              marginBottom: 0,
+            }}>
+              {streak.map(el => <li style={{
+                    display: 'inline-block',
+                    background: el === 'W' ? '#01A54B' : '#9e0822',
+                    color: '#ffffff',
+                    borderRadius: '0.3rem',
+                    marginRight: '0.3rem',
+                    minWidth: '1.8rem',
+                    padding: '0.4rem',
+                    textAlign: 'center',
+                    fontSize: '1rem',
+              }}>
+                {el}
+              </li>)}
+            </ul>
+          </div>;
+        }
       },
         {
             Header: "Most Played Team",
             Cell: (row) => {
                 console.log(row);
-                return <div><img alt="team logo" className="team-logo" width={30} height={30} src={this.getTeamImagePath(row.original.most_played_team)}/>  {row.original.most_played_team}</div>
+                return <div style={{ textAlign: 'left', fontWeight: 600 }}>
+                        <img alt="team logo" className="team-logo" width={30} height={30} src={this.getTeamImagePath(row.original.most_played_team)}/>
+                        <span style={{paddingLeft: '10px'}}>{row.original.most_played_team}</span>
+                       </div>
             },
             id: "status",
         },
@@ -88,20 +111,23 @@ class PlayersTable extends Component {
   render() {
     return (
       <ReactTable
-        className="table"
+        className="table -highlight"
         data={this.props.playersData}
         columns={this.state.columns}
         defaultPageSize={10}
+        pageSizeOptions={getPageSizeOptions(this.props.playersData)}
+        showPageJump={false}
         loading={this.props.loading}
         loadingText="Loading..."
         noDataText="No players found"
         getTrProps={(state, rowInfo, column) => {
           return {
-            style: {
-              alignItems: 'center',
-            },
+            style: {...reactTableStyles.trProps}
           };
         }}
+        getTheadThProps={(state, rowInfo, column) => ({
+          style: {...reactTableStyles.thProps}
+        })}
       />
     );
   }
