@@ -4,6 +4,7 @@ import MatchesTable from "./MatchesTable";
 import './Profile.css';
 import dennis from './images/dennis.jpg';
 import * as images from "./images/logos";
+import ELOChart from "./ELOChart";
 
 const BASE_ELO = 1200;
 
@@ -56,6 +57,10 @@ class Profile extends Component {
                                             <h4>Favorite Team: {this.props.userData.favorite_team}<img alt="team logo" className="team-logo" width={40} src={this.getTeamImagePath(this.props.userData.favorite_team)}/></h4>
                                         </Row>
                                     </Col>
+                                </Row>
+                                <Row>
+                                    <h1>ELO History</h1>
+                                    <ELOChart eloHistory={this.props.userData.elo_history} />
                                 </Row>
                                 <Row className="recent-matches">
                                     <h1>Recent Matches</h1>
